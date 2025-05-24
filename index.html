@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professionelle Lerngemeinschaften</title>
+  <style>
+    :root { --primary-color: #2d89ef; --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    body { font-family: var(--font-family); background: #f9f9f9; color: #333; margin: 0; padding: 20px; }
+    header { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; }
+    .logo { max-height: 60px; }
+    h1 { font-size: 2.5em; color: var(--primary-color); margin: 0; }
+
+    /* PLG-Intro */
+    .intro { text-align: center; margin-bottom: 40px; }
+    .plg-letters { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+    .letter-box { font-size: 3em; font-weight: bold; width: 80px; height: 80px; background: var(--primary-color); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s; position: relative; }
+    .letter-box:hover { background: #1c5cab; }
+    #tooltip { position: absolute; display: none; background: #fff; padding: 1rem; border-radius: .5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.2); max-width: 90vw; width: 400px; font-size: .9rem; line-height: 1.4; z-index: 1000; }
+
+    /* Flip-Cards */
+    .flip-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; }
+    .flip-card { width: 300px; height: 200px; perspective: 1000px; cursor: pointer; }
+    .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s; transform-style: preserve-3d; }
+    .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+    .flip-card-front { background: var(--primary-color); color: #fff; font-size: 1.2em; text-align: center; }
+    .flip-card-back { background: #fff; color: #333; transform: rotateY(180deg); font-size: 1em; text-align: center; }
+
+    .info { text-align: center; margin-bottom: 40px; }
+    .info a { color: var(--primary-color); text-decoration: none; }
+
+    /* Karten Merkmale */
+    .cards { max-width: 1000px; margin: 0 auto 40px; }
+    .card { background: #fff; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 2rem; padding: 1.5rem; }
+    .card h2 { color: var(--primary-color); margin-bottom: .5rem; }
+    .preview { color: #555; }
+    .button { margin-top: 1rem; padding: .5rem 1rem; background: var(--primary-color); color: #fff; border: none; border-radius: .5rem; cursor: pointer; }
+    .more { display: none; margin-top: 1rem; color: #333; }
+
+    /* Accordion */
+    .impact-section { max-width: 1000px; margin: 0 auto 40px; }
+    .impact-section h2 { color: var(--primary-color); margin-bottom: 1rem; }
+    .accordion-container { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .accordion { flex: 1 1 30%; background: #e5e7eb; border-radius: .5rem; padding: 1rem; cursor: pointer; }
+    .accordion-content { display: none; background: #f3f4f6; margin-top: .5rem; padding: 1rem; border-radius: .5rem; text-align: left; }
+/* Gute Praxisbeispiele */
+.plg-projekte { max-width: 1000px; margin: 0 auto 40px; }
+.plg-projekte h2 { color: var(--primary-color); margin-bottom: .5rem; text-align: center; }
+.plg-projekte p { text-align: center; margin-bottom: 2rem; }
+.projekt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+.projekt { background: #fff; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 1rem; display: flex; flex-direction: column; }
+.projekt h3 { margin-top: 0; font-size: 1.1rem; }
+.projekt img { width: 100%; border-radius: .5rem; margin-bottom: .5rem; }
+.projekt a.btn { margin-top: auto; padding: .5rem 1rem; background: var(--primary-color); color: #fff; text-decoration: none; border-radius: .5rem; text-align: center; display: inline-block; }
+
+    /* Fragebogen */
+    .questionnaire { max-width: 600px; margin: 0 auto 40px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .questionnaire h3 { color: var(--primary-color); margin-bottom: 10px; }
+    .questionnaire p { margin: 10px 0 5px; }
+    .questionnaire label { margin-right: 15px; cursor: pointer; }
+    #ergebnis { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1>Professionelle Lerngemeinschaften</h1>
+  </header>
+
+  <!-- PLG-Intro -->
+  <section class="intro">
+    
+    <div class="plg-letters">
+      <div class="letter-box" data-definition='<strong>P – Professionell</strong><br/>Professionell bedeutet, dass wir mit höchster Sorgfalt und Fachkompetenz arbeiten. Unsere Lösungen sind hochwertig, zuverlässig und auf dem neuesten Stand der Technik.<ul><li>Orientierung an Bildungsforschung</li><li>Kontinuierliches Lernen</li><li>Feedback-Kultur</li></ul>'>P</div>
+      <div class="letter-box" data-definition='<strong>L – Lernend</strong><br/>Lernend beschreibt die Haltung aller Mitglieder: Wir verstehen uns als lebenslange Lernende, die aktiv Wissen austauschen und gemeinsam neue Kompetenzen entwickeln.<ul><li>Kollegiales Coaching</li><li>Hospitation</li><li>Austauschformate</li></ul>'>L</div>
+      <div class="letter-box" data-definition='<strong>G – Gemeinschaft</strong><br/>Gemeinschaft ist das emotionale Fundament einer PLG. Vertrauen, Offenheit und eine unterstützende Kultur ermöglichen echtes gemeinsames Lernen.<ul><li>Hilfekultur</li><li>Fehlertoleranz</li><li>Gemeinsame Werte</li></ul>'>G</div>
+    </div>
+    <div id="tooltip"></div>
+  </section>
+
+  <!-- Flip-Cards -->
+  <section class="flip-container">
+    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front">Herausforderungen im Schulalltag</div><div class="flip-card-back">Digitalisierung, Differenzierung und Kompetenzorientierung erfordern neue Wege im Unterricht.</div></div></div>
+    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front">Antwort: PLG</div><div class="flip-card-back">PLGs bieten strukturierte Räume für kollegiales Lernen und Unterrichtsentwicklung.</div></div></div>
+  </section>
+  <section class="info">
+    <p><strong>Legitimation durch DigGiS:</strong> Schulen sollen sich laut MSB NRW zu lernenden Organisationen entwickeln. PLGs unterstützen diesen Prozess.<br/><a href="https://www.lernen-digital.nrw/system/files/media/document/file/digitalstrategie_schule_nrw_web.pdf" target="_blank">Digitalstrategie Schule NRW (PDF)</a></p>
+  </section>
+
+  <!-- Karten Merkmale -->
+  <section class="cards" id="cards"></section>
+
+  <!-- Accordion Wirkungen -->
+  <section class="impact-section">
+    <h2>Wirkungen professioneller Lerngemeinschaften</h2>
+    <div class="accordion-container">
+      <div class="accordion" onclick="toggleAccordion(this)"><h3>Schülerinnen und Schüler</h3><div class="accordion-content"><ul><li>Höhere Leistungen – nachgewiesen in mehreren Studien</li><li>Höhere Lernmotivation und individuellere Förderung</li><li>Sichtbare Lernzuwächse durch datenbasierten Rückmeldungen</li></ul></div></div>
+      <div class="accordion" onclick="toggleAccordion(this)"><h3>Lehrkräfte</h3><div class="accordion-content"><ul><li>Erweiterung von Methoden- und Diagnosekompetenz</li><li>Stärkere Praxisreflexion und forschende Haltung</li><li>Mehr Zufriedenheit, geringere Belastung und bessere Zusammenarbeit</li></ul></div></div>
+      <div class="accordion" onclick="toggleAccordion(this)"><h3>Unterricht</h3><div class="accordion-content"><ul><li>Höhere Qualität durch geteilte Standards und Innovationen</li><li>Fundierte Auswahl und Erprobung digitaler Tools und Methoden</li><li>Verbesserte Differenzierung und Lernförderung</li></ul></div></div>
+      <div class="accordion full" onclick="toggleAccordion(this)"><h3>Beispiele aus der Praxis</h3><div class="accordion-content"><ul><li>Ganztagsschule Salzwedel: PLG als Motor für Schulentwicklung und Gesundheitsförderung</li><li>Projekt POLKA (Uni Kassel): Forschen in Teams zur Unterrichtsentwicklung</li><li>SINUS-Projekt: Systematische Kooperation zur MINT-Förderung mit messbarem Lernerfolg</li></ul></div></div>
+    </div>
+  </section>
+<!-- Gute Praxisbeispiele -->
+<section class="plg-projekte">
+  <h2>Gute Praxisbeispiele Professioneller Lerngemeinschaften</h2>
+  <p>Professionelle Lerngemeinschaften (PLG) fördern die kollegiale Zusammenarbeit und die kontinuierliche Unterrichtsentwicklung. Hier finden Sie drei beispielhafte Projekte, die zeigen, wie PLG wirksam umgesetzt werden kann:</p>
+  <div class="projekt-grid">
+    <div class="projekt">
+      <img src="https://s.wordpress.com/mshots/v1/https://pikas.dzlm.de/pikas-f%C3%BCr-lehrer/professionelle-lerngemeinschaften?w=300" alt="PIKAS Vorschau">
+      <h3>➕ PIKAS-PLG – Professionelle Lerngemeinschaften im Mathematikunterricht</h3>
+      <p><strong>Kooperatives Lernen und Unterrichtsentwicklung im Fach Mathematik</strong></p>
+      <p>Im Projekt PIKAS wurden PLG als Format genutzt, um Grundschullehrkräfte in der Weiterentwicklung ihres Mathematikunterrichts zu unterstützen. In kleinen Gruppen reflektieren Lehrkräfte regelmäßig ihre Praxis, tauschen sich über didaktische Ansätze aus und planen gemeinsam Unterrichtseinheiten – evidenzbasiert und praxisnah.</p>
+      <a href="https://pikas.dzlm.de/pikas-f%C3%BCr-lehrer/professionelle-lerngemeinschaften" target="_blank" class="btn">Zur PIKAS-Projektbeschreibung</a>
+    </div>
+    <div class="projekt">
+      <img src="https://s.wordpress.com/mshots/v1/https://polka-projekt.de/?w=300" alt="POLKA Vorschau">
+      <h3>🔍 POLKA-Projekt</h3>
+      <p><strong>Forschen in Teams zur Unterrichtsentwicklung</strong></p>
+      <p>Das Projekt „POLKA“ (Unterricht in professionellen Lerngemeinschaften kriterial analysieren und weiterentwickeln) bringt Lehrkräfte in kooperative Forschungsprozesse. Ziel ist die systematische Verbesserung von Unterricht durch kollegiale Hospitation und Reflexion.</p>
+      <a href="https://polka-projekt.de/" target="_blank" class="btn">Zur offiziellen Projektseite</a>
+    </div>
+    <div class="projekt">
+      <img src="https://s.wordpress.com/mshots/v1/https://www.schulentwicklung.nrw.de/sinus/?w=300" alt="SINUS Vorschau">
+      <h3>🔬 SINUS-Projekt</h3>
+      <p><strong>Kooperation für besseren MINT-Unterricht</strong></p>
+      <p>Das SINUS-Programm unterstützt Lehrkräfte in der systematischen Weiterentwicklung ihres mathematisch-naturwissenschaftlichen Unterrichts. Der Fokus liegt auf praxisnaher, kooperativer Unterrichtsentwicklung mit messbarem Lernerfolg.</p>
+      <a href="https://www.schulentwicklung.nrw.de/sinus/" target="_blank" class="btn">Zum SINUS-Projekt NRW</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Fragebogen -->
+  <section class="questionnaire">
+    <h3>PLG-Eignungstest</h3>
+    <p>Bitte beantworten Sie alle Fragen:</p>
+    <form id="plgForm">
+      <p>1. Bin ich bereit, mein Unterrichtshandeln offen zu reflektieren?</p>
+      <label><input type="radio" name="q1" value="yes"> Ja</label> <label><input type="radio" name="q1" value="no"> Nein</label>
+      <p>2. Kann ich mich auf gemeinsame pädagogische Ziele einlassen?</p>
+      <label><input type="radio" name="q2" value="yes"> Ja</label> <label><input type="radio" name="q2" value="no"> Nein</label>
+      <p>3. Bin ich bereit, Fehler als Lernchance zu sehen?</p>
+      <label><input type="radio" name="q3" value="yes"> Ja</label> <label><input type="radio" name="q3" value="no"> Nein</label>
+      <p>4.	Fällt es mir leicht, um Hilfe zu bitten und Hilfe zu geben?</p>
+      <label><input type="radio" name="q4" value="yes"> Ja</label> <label><input type="radio" name="q4" value="no"> Nein</label>
+      <p>5.	Sehe ich mich als Teil einer lernenden Gemeinschaft?</p>
+      <label><input type="radio" name="q5" value="yes"> Ja</label> <label><input type="radio" name="q5" value="no"> Nein</label>
+    </form>
+    <div id="ergebnis"></div>
+  </section>
+
+  <script>
+  // PLG-Intro Tooltip – Touch und Mouseover
+  document.querySelectorAll('.plg-letters .letter-box').forEach(box => {
+    // Für Maus
+    box.addEventListener('mouseenter', showTooltip);
+    box.addEventListener('mouseleave', hideTooltip);
+
+    // Für Touch / Tap
+    box.addEventListener('touchstart', function (e) {
+      e.stopPropagation();
+      showTooltip.call(this, e);
+      document.addEventListener('touchstart', hideTooltip, { once: true });
+    });
+  });
+
+  function showTooltip(e) {
+    const tt = document.getElementById('tooltip');
+    tt.innerHTML = this.getAttribute('data-definition');
+    const rect = this.getBoundingClientRect();
+    tt.style.left = '0';
+    tt.style.top = '0';
+    tt.style.display = 'block';
+    const top = rect.bottom + window.scrollY + 10;
+    let left = rect.left + window.scrollX + rect.width/2 - tt.offsetWidth/2;
+    left = Math.max(10, Math.min(left, window.innerWidth - tt.offsetWidth - 10));
+    tt.style.top = `${top}px`;
+    tt.style.left = `${left}px`;
+  }
+
+  function hideTooltip() {
+    document.getElementById('tooltip').style.display = 'none';
+  }
+
+
+    // Flip-Cards: CSS hover
+
+    // Karten generieren
+    const cardsData = [
+      { title: "(1) Verbindliche Zusammenarbeit", preview: "PLGs finden regelmäßig statt, sind organisatorisch verankert und klar strukturiert.", description: `Verbindlichkeit ist das organisatorische Rückgrat jeder professionellen Lerngemeinschaft. Regelmäßige, strukturierte Treffen – idealerweise eingebettet in die Schulorganisation – sorgen dafür, dass die Arbeit nachhaltig und wirksam ist. Diese Verbindlichkeit umfasst klare Zeitfenster, transparente Arbeitsphasen und einen realistischen Arbeitsumfang. Die Schulleitung übernimmt hierbei eine zentrale Rolle: Sie sorgt für Freiräume, Ressourcen (z. B. Räume, Moderationsmaterialien, digitale Tools) und institutionelle Anerkennung der Arbeit. Verbindlichkeit fördert das Gefühl von Ernsthaftigkeit und Professionalität.` },
+      { title: "(2) Geteilte Werte und Zielverständnis", preview: "Ein gemeinsames Leitbild und konkrete Ziele stiften Sinn und Orientierung.", description: `Professionelle Lerngemeinschaften gründen auf einem gemeinsamen normativen Fundament. Werte wie Lernorientierung, kollegiale Solidarität und Bildungswirksamkeit müssen geteilt werden – und sie werden operationalisiert durch gemeinsame Ziele. Diese Ziele sind nicht abstrakt, sondern konkret und überprüfbar: Sie richten sich z. B. auf die Entwicklung adaptiver Unterrichtsformate, die Integration digitaler Medien oder die Förderung der Lernwirksamkeit. Solch ein geteiltes Zielverständnis erleichtert die Fokussierung, priorisiert die Arbeitsschritte und erzeugt kollektive Motivation.` },
+      { title: "(3) Reflexiver Dialog", preview: "Reflexion, Feedback und kollektive Lernprozesse stehen im Mittelpunkt.", description: `Reflexiver Dialog ist mehr als Gespräch – er ist forschender, datenbasierter Austausch über professionelles Handeln. Lehrkräfte reflektieren gemeinsam ihre Praxis, formulieren Hypothesen, diskutieren theoretische und empirische Grundlagen und entwickeln neue didaktische Zugänge. Der Dialog basiert auf Respekt, Vertrauen und Neugier. Er wird durch Gesprächsregeln, Rollenwechsel (z. B. Moderator:in, Feedbackgeber:in) und strukturierende Methoden (z. B. kollegiale Fallberatung) professionell gestaltet.` },
+      { title: "(4) Praxisbezug & Deprivatisierung", preview: "Unterricht wird geöffnet, analysiert und gemeinsam weiterentwickelt.", description: `Deprivatisierung der Praxis bedeutet: Der eigene Unterricht wird zum Gegenstand kollektiver Reflexion. Lehrkräfte ermöglichen Einblick in ihre Methoden, Materialien und didaktischen Überlegungen. Sie dokumentieren Lernverläufe, analysieren gemeinsam Lernprodukte und unterstützen sich durch Hospitationen oder Videointeraktionsanalysen. Diese Öffnung erzeugt eine Feedbackkultur, die Vertrauen und kollegiales Lernen fördert – und sie setzt ein starkes Signal gegen das verbreitete Bild der „pädagogischen Einzelkämpfer:in“.` },
+      { title: "(5) Veränderungsorientierung", preview: "Ziel ist konkrete Veränderung in der Unterrichts- und Schulentwicklung.", description: `Professionelle Lerngemeinschaften sind Motoren für Transformation. Sie analysieren Bedarfe, formulieren Zielsetzungen, erproben neue Wege und reflektieren deren Wirkung. Dabei ist Veränderung nicht zufällig, sondern systematisch und iterativ geplant: PLGs arbeiten in Entwicklungszyklen (z. B. nach dem Plan-Do-Study-Act-Prinzip). Veränderungsorientierung bedeutet auch: Hindernisse werden ernst genommen, scheitern darf Teil des Prozesses sein – wenn daraus gelernt wird.` },
+      { title: "(6) Dokumentation & Analyse", preview: "Transparenz und Lernwirksamkeit durch strukturierte Dokumentation.", description: `Durch systematische Dokumentation (Protokolle, Beobachtungsraster, Lernstandsdaten) wird die Arbeit der PLG nachvollziehbar und anschlussfähig. Analyseinstrumente (z. B. Feedbacktools, Checklisten, Indikatoren) unterstützen datenbasiertes Arbeiten. Dokumentation ist nicht nur formale Pflicht, sondern reflektiertes Handlungswissen: Sie macht Lernfortschritte sichtbar, befördert die kollektive Wissensentwicklung und ist Grundlage für Transfer in die Gesamtorganisation.` },
+      { title: "(7) Rollen & Moderation", preview: "Klare Rollenverteilung ermöglicht effektive und gleichberechtigte Zusammenarbeit.", description: `Professionelle Lerngemeinschaften leben von gut strukturierter Kommunikation. Dafür braucht es funktionale Rollen: Moderator:in, Protokollant:in, Inputgeber:in, Zeitwächter:in – diese Rollen wechseln und stärken Partizipation. Professionelle Moderation stellt sicher, dass Diskussionen zielgerichtet bleiben und alle Stimmen Gehör finden. Die Moderation kann durch geschulte Lehrkräfte, externe Berater:innen oder durch rotierende Zuständigkeiten erfolgen. Rollenklärung fördert Verbindlichkeit und Entlastung.` },
+      { title: "(8) Daten & Monitoring", preview: "Wirkungsanalyse durch systematische Nutzung von Feedback und Lerndaten.", description: `PLGs nutzen Daten, um ihre Wirksamkeit zu überprüfen: Schülerfeedback, Leistungsentwicklungen, Beobachtungsdaten oder Evaluationsergebnisse. Diese Daten werden gemeinsam interpretiert, um Lernfortschritte sichtbar zu machen und nächste Entwicklungsschritte zu planen. Monitoring wird dabei nicht als Kontrolle, sondern als Chance zur lernwirksamen Steuerung verstanden. Auch einfache, digital gestützte Tools (z. B. Survey-Apps, Lernplattformen) können dabei helfen.` },
+      { title: "(9) Hilfekultur", preview: "Solidarisches Miteinander als Fundament kollegialen Lernens.", description: `Eine Hilfekultur ermöglicht spontane und strukturierte Unterstützung – sei es bei der Vorbereitung, Durchführung oder Reflexion von Unterricht. Diese Unterstützung basiert nicht auf Hierarchie, sondern auf gegenseitiger Anerkennung und Offenheit. Eine funktionierende Hilfekultur entlastet, fördert Innovation und senkt die Schwelle, Hilfe aktiv anzunehmen oder zu erbitten. Diese Kultur ist eng verbunden mit der Professionalität im Kollegium.` },
+      { title: "(10) Fehlertoleranz", preview: "Lernräume brauchen die Freiheit zum Irrtum.", description: `Fehler werden in PLGs nicht als Defizit, sondern als Erkenntnismöglichkeit verstanden. Fehler dürfen benannt, analysiert und gemeinsam reflektiert werden – ohne Angst vor Bewertung oder Gesichtsverlust. Eine solche Fehlerkultur entsteht nicht automatisch, sondern muss bewusst gestaltet werden. Sie ist Ausdruck von Vertrauen, Reife und professioneller Haltung. Nur so entstehen echte Innovationsräume.` }
+    ];
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('cards');
+      cardsData.forEach(c => {
+        const div = document.createElement('div'); div.className = 'card';
+        div.innerHTML = `<h2>${c.title}</h2><p class="preview">${c.preview}</p><button class="button" onclick="toggleMore(this)">Mehr erfahren</button><div class="more">${c.description}</div>`;
+        container.appendChild(div);
+      });
+    });
+    function toggleMore(btn) {
+      const more = btn.nextElementSibling;
+      const shown = more.style.display === 'block';
+      more.style.display = shown ? 'none' : 'block';
+      btn.textContent = shown ? 'Mehr erfahren' : 'Weniger anzeigen';
+    }
+
+    // Accordion
+    document.querySelectorAll('.accordion').forEach(acc => acc.addEventListener('click', () => {
+      const content = acc.querySelector('.accordion-content');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }));
+
+    // Fragebogen: Automatische Auswertung
+    function checkComplete() {
+      let count = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`)) count++;
+      }
+      if (count === 5) auswerten();
+    }
+    document.querySelectorAll('.questionnaire input[type=radio]').forEach(r => r.addEventListener('change', checkComplete));
+    function auswerten() {
+      let ja = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`).value === 'yes') ja++;
+      }
+      const out = document.getElementById('ergebnis');
+      if (ja === 5) out.textContent = 'Du bringst ideale Voraussetzungen für die Arbeit in einer Professionellen Lerngemeinschaft mit!';
+      else if (ja >= 3) out.textContent = 'Du hast eine gute Basis – mit gezielter Unterstützung kannst du die Arbeit in einer PLG gut meistern.';
+      else if (ja >= 1) out.textContent = 'Du hast bereits erste Anknüpfungspunkte, aber es lohnt sich, weiter über deine Rolle in einer PLG nachzudenken.';
+      else out.textContent = 'Aktuell scheint dir das Arbeiten in einer Professionellen Lerngemeinschaft schwerzufallen. Lass uns gemeinsam überlegen, wie du dich gut darauf vorbereiten kannst.';
+    }
+  </script>
+</body>
+</html>
