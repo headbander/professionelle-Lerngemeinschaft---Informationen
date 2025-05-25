@@ -16,7 +16,47 @@
     .plg-letters { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
     .letter-box { font-size: 3em; font-weight: bold; width: 80px; height: 80px; background: var(--primary-color); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.3s; position: relative; }
     .letter-box:hover { background: #1c5cab; }
-    #tooltip { position: absolute; display: none; background: #fff; padding: 1rem; border-radius: .5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.2); max-width: 90vw; width: 400px; font-size: .9rem; line-height: 1.4; z-index: 1000; }
+    #tooltip { position: absolute; display: none; background: #fff; padding: 1rem; border-radius: .5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.2); max-width: 90vw; width: 400px; font-size: .9rem; line-height: 1.4; z-index: 1000; text-align: left;  }
+
+.plg-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+.plg-image-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 240px;
+}
+.plg-img {
+  max-width: 220px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+  margin-bottom: 8px;
+}
+.plg-img-caption {
+  font-size: 0.95em;
+  color: #555;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .plg-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .plg-image-link {
+    max-width: 90vw;
+  }
+  .plg-img {
+    max-width: 80vw;
+  }
+}
+
 
     /* Flip-Cards */
     .flip-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; }
@@ -70,15 +110,24 @@
   </header>
 
   <!-- PLG-Intro -->
-  <section class="intro">
-    
+<section class="intro">
+  <div class="plg-row">
     <div class="plg-letters">
-      <div class="letter-box" data-definition='<strong>P – Professionell</strong><br/>Professionell bedeutet, dass wir mit höchster Sorgfalt und Fachkompetenz arbeiten. Unsere Lösungen sind hochwertig, zuverlässig und auf dem neuesten Stand der Technik.<ul><li>Orientierung an Bildungsforschung</li><li>Kontinuierliches Lernen</li><li>Feedback-Kultur</li></ul>'>P</div>
-      <div class="letter-box" data-definition='<strong>L – Lernend</strong><br/>Lernend beschreibt die Haltung aller Mitglieder: Wir verstehen uns als lebenslange Lernende, die aktiv Wissen austauschen und gemeinsam neue Kompetenzen entwickeln.<ul><li>Kollegiales Coaching</li><li>Hospitation</li><li>Austauschformate</li></ul>'>L</div>
-      <div class="letter-box" data-definition='<strong>G – Gemeinschaft</strong><br/>Gemeinschaft ist das emotionale Fundament einer PLG. Vertrauen, Offenheit und eine unterstützende Kultur ermöglichen echtes gemeinsames Lernen.<ul><li>Hilfekultur</li><li>Fehlertoleranz</li><li>Gemeinsame Werte</li></ul>'>G</div>
+  <div class="letter-box" data-definition='<strong>P – Professionell</strong><br/>Professionell bedeutet, dass wir mit höchster Sorgfalt und Fachkompetenz arbeiten. Unsere Lösungen sind hochwertig, zuverlässig und auf dem neuesten Stand der Technik.<ul><li>Orientierung an Bildungsforschung</li><li>Kontinuierliches Lernen</li><li>Feedback-Kultur</li></ul>'>P</div>
+  <div class="letter-box" data-definition='<strong>L – Lernend</strong><br/>Lernend beschreibt die Haltung aller Mitglieder: Wir verstehen uns als lebenslange Lernende, die aktiv Wissen austauschen und gemeinsam neue Kompetenzen entwickeln.<ul><li>Kollegiales Coaching</li><li>Hospitation</li><li>Austauschformate</li></ul>'>L</div>
+  <div class="letter-box" data-definition='<strong>G – Gemeinschaft</strong><br/>Gemeinschaft ist das emotionale Fundament einer PLG. Vertrauen, Offenheit und eine unterstützende Kultur ermöglichen echtes gemeinsames Lernen.<ul><li>Hilfekultur</li><li>Fehlertoleranz</li><li>Gemeinsame Werte</li></ul>'>G</div>
+</div>
+
+    <div class="plg-image-link">
+      <a href="https://epub.ub.uni-muenchen.de/93991/1/Konzeptpapier_PLG_siLg_Endversion2.pdf" target="_blank">
+        <img src="professionelle Lerngemeinschaft - Zusammenfassung.png" alt="Zusammenfassung PLG" class="plg-img"/>
+      </a>
+      <div class="plg-img-caption">Zusammenfassung PLG</div>
     </div>
-    <div id="tooltip"></div>
-  </section>
+  </div>
+  <div id="tooltip"></div>
+</section>
+
 
   <!-- Flip-Cards -->
   <section class="flip-container">
